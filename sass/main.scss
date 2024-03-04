@@ -1,0 +1,93 @@
+@import 'guide.scss';
+
+// Main Container
+.main-wrapper {
+	display: grid;
+	grid-template-rows: .5fr 1.5fr;
+	width: 600px;
+	height: 450px;
+	padding: 40px;
+	font-family: $primary-font;
+	background-color: $white;
+	border-radius: 20px 20px 30% 20px;
+}
+
+// Input Section
+.input {
+	position: relative;
+	@include flexbox(row, center, center);
+	padding-bottom: 25px;
+	border-bottom: 2px solid $light-grey;
+}
+.user-info {
+	@include flexbox(column, null, null, 10px);
+	span {
+		font-size: $md-size;
+		font-weight: $bold;
+		color: $smokey-grey;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+	}
+}
+#day, #month, #year {
+	width: 60%;
+	height: 55px;
+	border: 2px solid $light-grey;
+	border-radius: 10px;
+	font-size: $input-size;
+	font-weight: $bold;
+	outline: none;
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+  		-webkit-appearance: none;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+	&:focus {
+		border: 2px solid $purple;
+	}
+}
+.result-generator-btn {
+	position: absolute;
+	right: 0;
+	bottom: calc(0% - 30px);
+	width: 60px;
+	height: 60px;
+	background-color: $purple;
+	border: none;
+	border-radius: 100%;
+	transition: background 600ms ease;
+	svg {
+		width: 30px;
+		height: 30px;
+	}
+	&:hover {
+		background: $off-black;
+		cursor: pointer;
+	}
+}
+
+// Output Section
+.output {
+	@include flexbox(column, center, start, 2px);
+}
+.result {
+	margin: 0;
+	font-size: $lg-size;
+	font-weight: $ex-bold;
+	font-style: italic;
+	color: $off-black;
+}
+.output--year, .output--month, .output--day {
+	color: $purple;
+}
+
+// Error advices
+.error {
+	margin: 0 0 10px 0;
+	font-size: $sm-size;
+	font-weight: $bold;
+	font-style: italic;
+	color: $light-red;
+}
