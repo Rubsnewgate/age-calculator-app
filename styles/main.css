@@ -46,11 +46,11 @@ body {
   flex-direction: column;
   gap: 10px;
 }
-.user-info span {
+.user-info label {
   font-size: 1.6rem;
   font-weight: 700;
-  color: hsl(0, 1%, 44%);
   text-transform: uppercase;
+  color: hsl(0, 1%, 44%);
   letter-spacing: 3px;
 }
 
@@ -84,13 +84,18 @@ body {
   border-radius: 100%;
   transition: background 600ms ease;
 }
-.result-generator-btn svg {
-  width: 30px;
-  height: 30px;
-}
 .result-generator-btn:hover {
   background: hsl(0, 0%, 8%);
   cursor: pointer;
+}
+
+.btn-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url(../assets/icons/icon-arrow.svg);
+  background-size: cover;
+  vertical-align: middle;
 }
 
 .output {

@@ -21,11 +21,11 @@
 }
 .user-info {
 	@include flexbox(column, null, null, 10px);
-	span {
+	label {
 		font-size: $md-size;
 		font-weight: $bold;
-		color: $smokey-grey;
 		text-transform: uppercase;
+		color: $smokey-grey;
 		letter-spacing: 3px;
 	}
 }
@@ -58,14 +58,18 @@
 	border: none;
 	border-radius: 100%;
 	transition: background 600ms ease;
-	svg {
-		width: 30px;
-		height: 30px;
-	}
 	&:hover {
 		background: $off-black;
 		cursor: pointer;
 	}
+}
+.btn-icon {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background-image: url(../assets/icons/icon-arrow.svg);
+	background-size: cover;
+	vertical-align: middle;
 }
 
 // Output Section

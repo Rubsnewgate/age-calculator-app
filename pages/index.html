@@ -17,26 +17,22 @@
 	<main class="main-wrapper">
 		<div class="input">
 			<div class="user-info">
-				<span for="day"> day </span>
-				<input type="number" name="day" id="day"/>
+				<label for="day"> day </label>
+				<input type="number" name="day" id="day" placeholder="DD"/>
 				<small class="error error--day"></small>
 			</div>
 			<div class="user-info">
-				<span for="month"> month </span>
-				<input type="number" name="month" id="month"/>
+				<label for="month"> month </label>
+				<input type="number" name="month" id="month" placeholder="MM"/>
 				<small class="error error--month"></small>
 			</div>
 			<div class="user-info">
-				<span for="year"> year </span>
-				<input type="number" name="year" id="year"/>
+				<label for="year"> year </label>
+				<input type="number" name="year" id="year" placeholder="YYYY"/>
 				<small class="error error--year"></small>
 			</div>
-			<button class="result-generator-btn"">
-				<svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44">
-					<g fill="none" stroke="#FFF" stroke-width="2">
-						<path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/>
-					</g>
-				</svg>
+			<button class="result-generator-btn">
+				<span class="btn-icon"></span>
 			</button>
 		</div>
 		<div class="output">

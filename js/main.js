@@ -29,7 +29,7 @@ INPUT_DAY.addEventListener('input', (e) => {
 		ERROR_DAY.textContent = ''
 	}
 
-	if (+INPUT_DAY.value === 0) {
+	if (+INPUT_DAY.value === '') {
 		isValid = false
 		ERROR_DAY.textContent = 'This field is required'
 		isValid = false
@@ -51,7 +51,7 @@ INPUT_MONTH.addEventListener('input', (e) => {
 		ERROR_MONTH.textContent = ''
 	}
 
-	if (+INPUT_MONTH.value === 0) {
+	if (+INPUT_MONTH.value === '') {
 		isValid = false
 		ERROR_MONTH.textContent = 'This field is required'
 		isValid = false
@@ -73,7 +73,7 @@ INPUT_YEAR.addEventListener('input', (e) => {
 		ERROR_YEAR.textContent = ''
 	}
 
-	if (+INPUT_DAY.value === 0) {
+	if (+INPUT_DAY.value === '') {
 		isValid = false
 		ERROR_YEAR.textContent = 'This field is required'
 		isValid = false
