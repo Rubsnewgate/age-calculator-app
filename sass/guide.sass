@@ -1,0 +1,52 @@
+// primary colors
+$purple: hsl(259, 100%, 65%)
+$light-red: hsl(0, 100%, 67%)
+
+// neutral colors
+$white: hsl(0, 0%, 100%)
+$off-white: hsl(0, 0%, 94%)
+$light-grey: hsl(0, 0%, 86%)
+$smokey-grey: hsl(0, 1%, 44%)
+$off-black: hsl(0, 0%, 8%)
+
+// typography
+$primary-font: "Poppins"
+
+// font-sizes
+$lg-size: 5rem
+$md-size: 1.6rem
+$sm-size: 1rem
+$input-size: 3.2rem
+
+// font-weights
+$regular: 400
+$bold: 700
+$ex-bold: 800
+
+// general resets
+*
+	box-sizing: border-box
+
+html
+	font-size: 62.5%
+
+body
+	display: grid
+	place-content: center
+	width: 100%
+	min-height: 100vh
+	margin: 0
+	background-color: $off-white
+
+// mixins
+@mixin flexbox($direction:null, $justify:null, $align:null, $gap:null)
+	display: flex
+	flex-direction: $direction
+	justify-content: $justify
+	align-items: $align
+	gap: $gap
+
+// breakpoints
+@media screen and (max-width: 540px)
+	body
+		padding: 20px 10px

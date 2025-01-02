@@ -1,106 +1,86 @@
-// Input Elements
-const INPUT_YEAR = document.querySelector('#year')
-const INPUT_MONTH = document.querySelector('#month')
-const INPUT_DAY = document.querySelector('#day')
-let isValid = false
+const domElements = {
+	// input data
+	inputYear: document.getElementById('year'),
+	inputMonth: document.getElementById('month'),
+	inputDay: document.getElementById('day'),
 
-// Output Elements
-const OUTPUT_YEAR = document.querySelector('.output--year')
-const OUTPUT_MONTH = document.querySelector('.output--month')
-const OUTPUT_DAY = document.querySelector('.output--day')
+	// output data
+	outputYear: document.querySelector('.output--year'),
+    outputMonth: document.querySelector('.output--month'),
+    outputDay: document.querySelector('.output--day'),
 
-const RESULT_GENERATOR_BTN = document.querySelector('.result-generator-btn')
+	// generate btn
+	resultGeneratorBtn: document.querySelector('.result-generator-btn'),
 
-// Error Elements
-const ERROR_YEAR = document.querySelector('.error--year')
-const ERROR_MONTH = document.querySelector('.error--month')
-const ERROR_DAY = document.querySelector('.error--day')
-
-RESULT_GENERATOR_BTN.addEventListener('click', calculateDate)
-
-INPUT_DAY.addEventListener('input', (e) => {
-	if (+INPUT_DAY.value > 31) {
-		ERROR_DAY.textContent = 'Must be a valid day'
-		isValid = false
-		return
-	}
-	else {
-		isValid = true
-		ERROR_DAY.textContent = ''
-	}
-
-	if (+INPUT_DAY.value === '') {
-		isValid = false
-		ERROR_DAY.textContent = 'This field is required'
-		isValid = false
-		return
-	}
-	else {
-		ERROR_DAY.textContent = ''
-	}
-})
-
-INPUT_MONTH.addEventListener('input', (e) => {
-	if (+INPUT_MONTH.value > 12) {
-		ERROR_MONTH.textContent = 'Must be a valid month'
-		isValid = false
-		return
-	}
-	else {
-		isValid = true
-		ERROR_MONTH.textContent = ''
-	}
-
-	if (+INPUT_MONTH.value === '') {
-		isValid = false
-		ERROR_MONTH.textContent = 'This field is required'
-		isValid = false
-		return
-	}
-	else {
-		ERROR_MONTH.textContent = ''
-	}
-})
-
-INPUT_YEAR.addEventListener('input', (e) => {
-	if (+INPUT_YEAR.value > 2024) {
-		ERROR_YEAR.textContent = 'Must be in the past'
-		isValid = false
-		return
-	}
-	else {
-		isValid = true
-		ERROR_YEAR.textContent = ''
-	}
-
-	if (+INPUT_DAY.value === '') {
-		isValid = false
-		ERROR_YEAR.textContent = 'This field is required'
-		isValid = false
-		return
-	}
-	else {
-		ERROR_YEAR.textContent = ''
-	}
-})
-
-function calculateDate() {
-	if (isValid) {
-		let birthday = `${INPUT_MONTH.value}/${INPUT_DAY.value}/${INPUT_YEAR.value}`
-		console.log(birthday)
-		let birthdayObj = new Date(birthday)
-		let ageDiffMill = Date.now() - birthdayObj
-		let ageDate = new Date(ageDiffMill)
-		let ageYears = ageDate.getUTCFullYear() - 1970
-		let ageMonth = ageDate.getUTCMonth()
-		let ageDay = ageDate.getUTCDay()
-
-		// Displaying The Results
-		OUTPUT_DAY.textContent = ageDay
-		OUTPUT_MONTH.textContent = ageMonth
-		OUTPUT_YEAR.textContent = ageYears
-	}
-	else {
-		alert('Error!')
-	}
+    // error messages
+    errorYear: document.querySelector('.error--year'),
+    errorMonth: document.querySelector('.error--month'),
+    errorDay: document.querySelector('.error--day'),
 }
+
+function validateInput (input, max, errorElement, requiredMessage, invalidMessage) {
+	const value = parseInt(input.value, 10)
+
+	if (!input.value) {
+		errorElement.textContent = requiredMessage
+        return
+	}
+	if (value > max || value <= 0) {
+		errorElement.textContent = invalidMessage
+        return
+	}
+	errorElement.textContent = ''
+	return true
+}
+
+function calculateDate () {
+	const isDayValid = validateInput(
+		domElements.inputDay,
+        31,
+        domElements.errorDay,
+        'This field is required',
+        'Invalid day'
+	)
+	const isMonthValid = validateInput(
+        domElements.inputMonth,
+        12,
+        domElements.errorMonth,
+		'This field is required',
+        'Invalid month',
+	)
+	const isYearValid = validateInput(
+        domElements.inputYear,
+        new Date().getFullYear(),
+        domElements.errorYear,
+        'This field is required',
+		'Must be in the past'
+	)
+
+	if (!isDayValid || !isYearValid || !isMonthValid) return
+
+	const day = parseInt(domElements.inputDay.value, 10)
+	const month = parseInt(domElements.inputMonth.value, 10) - 1
+	const year = parseInt(domElements.inputYear.value, 10)
+
+	const birthday = new Date(year, month, day)
+
+	if (isNaN(birthday.getTime())) {
+		domElements.errorDay.textContent = 'Invalid date'
+		return
+	}
+
+	const now = new Date()
+	const diffMilliseconds = now - birthday
+
+	const ageDate = new Date(diffMilliseconds)
+	const ageYears = ageDate.getUTCFullYear() - 1970
+	const ageMonths = ageDate.getUTCMonth()
+	const ageDays = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24)) % 30
+
+	// display results
+	domElements.outputYear.textContent = ageYears
+	domElements.outputMonth.textContent = ageMonths
+	domElements.outputDay.textContent = ageDays
+}
+
+domElements.resultGeneratorBtn.addEventListener('click', calculateDate)

@@ -1,0 +1,90 @@
+@use 'guide.sass'
+
+// main container
+.main-wrapper
+	display: grid
+	grid-template-rows: .5fr 1.5fr
+	width: 600px
+	height: 450px
+	padding: 40px
+	font-family: guide.$primary-font
+	background-color: guide.$white
+	border-radius: 20px 20px 30% 20px
+
+// input section
+.input
+	position: relative
+	@include guide.flexbox(row, center, center)
+	padding-bottom: 25px
+	border-bottom: 2px solid guide.$light-grey
+
+.user-info
+	@include guide.flexbox(column, null, null, 10px)
+	label
+		font-size: guide.$md-size
+		font-weight: guide.$bold
+		text-transform: uppercase
+		color: guide.$smokey-grey
+		letter-spacing: 3px
+
+#day, #month, #year
+	width: 60%
+	height: 55px
+	border: 2px solid guide.$light-grey
+	border-radius: 10px
+	font-size: guide.$input-size
+	font-weight: guide.$bold
+	outline: none
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button
+		-webkit-appearance: none
+
+	&:hover
+		cursor: pointer
+
+	&:focus
+		border: 2px solid guide.$purple
+
+.result-generator-btn
+	position: absolute
+	right: 0
+	bottom: calc(0% - 30px)
+	width: 60px
+	height: 60px
+	background-color: guide.$purple
+	border: none
+	border-radius: 100%
+	transition: background 600ms ease
+	&:hover
+		background: guide.$off-black
+		cursor: pointer
+
+.btn-icon
+	display: inline-block
+	width: 30px
+	height: 30px
+	background-image: url(../assets/icons/icon-arrow.svg)
+	background-size: cover
+	vertical-align: middle
+
+// output section
+.output
+	@include guide.flexbox(column, center, start, 2px)
+
+.result
+	margin: 0
+	font-size: guide.$lg-size
+	font-weight: guide.$ex-bold
+	font-style: italic
+	color: guide.$off-black
+
+.output--year, .output--month, .output--day
+	color: guide.$purple
+
+// error advices
+.error
+	margin: 0 0 10px 0
+	font-size: guide.$sm-size
+	font-weight: guide.$bold
+	font-style: italic
+	color: guide.$light-red
